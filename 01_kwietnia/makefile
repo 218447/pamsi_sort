@@ -1,13 +1,13 @@
 FLAGS = -g -Iinc -pedantic -Wall -std=c++11
 
-lista: obj/List.o obj/test.o
-	g++ obj/List.o obj/test.o -o lista
-	
-obj/test.o: src/test.cpp inc/List.h
-	g++ -c $(FLAGS) src/test.cpp -o obj/test.o
+QS: obj/main.o obj/QuickSort.o obj/List.o
+	g++ obj/main.o obj/QuickSort.o obj/List.o -o QS
 
-obj/Stack.o: src/Stack.cpp inc/Stack.h
-	g++ -c $(FLAGS) -o obj/Stack.o src/Stack.cpp
+obj/main.o: src/main.cpp inc/List.h
+	g++ -c $(FLAGS) src/main.cpp -o obj/QuickSort.o
+
+obj/QuickSort.o: src/QuickSort.cpp inc/QuickSort.hh inc/IQuickSort.hh
+	g++ -c $(FLAGS) -o obj/QuickSort.o src/QuickSort.cpp
 
 obj/List.o: src/List.cpp inc/List.h inc/IList.h
 	g++ -c $(FLAGS) -o obj/List.o src/List.cpp
