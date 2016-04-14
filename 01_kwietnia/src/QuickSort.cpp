@@ -1,54 +1,52 @@
 #include "QuickSort.hh"
-
+#include <iostream>
 // Metody klasy QuickSort, sortuj±cej dan± ilo¶æ elementów znajdujacych sie na li¶cie (docelowo na kolejce)
 
 // Konstruktor
-QuickSort::quickSort(&List newListOfElements) {
-  listOfElements=new List;
-  listOfElements=newListOfElements;
+QuickSort::QuickSort(List* newListOfElements) {
+  listOfElements = new List;
+  for (int i=1; i<=newListOfElements->size(); i++) {    
+    listOfElements->add(newListOfElements->get(i).element, i);
+  }
 }
 
-//Destruktor
-QuickSort::~quickSort() {
-  delete listOfElements;
-  delete lessThanX;
-  delete moreOfElements;
-}
-
-//Metoda wybieraj±ca piwota
-int QuickSort::chooseX(int start, int end) {
-  srand (time(NULL));
-return rand() % (end-start)  
-
-}
 
 //Metoda zamieniaj±ca miejscami
-void QuickSort::change (int start, int end) {
-  for(int i=0; i<positionOfX; i++) {
-    a=listOfElements->remove(i);
-    if (a<X) {
-      listOfElements->add(a, positionOfX-1);
+void QuickSort::quickSort(int p, int r) {
+  int i = p, j = r, ind = (p+r)/2; 
+  int pivot = listOfElements->get(ind).element;
+  
+  do {
+    while (i<ind) {
+      if (listOfElements->get(i).element > pivot) {
+	listOfElements->add(listOfElements->get(i).element, r++);
+	ind--;
+	listOfElements->remove(i);
+      } else i++;
+    }
+    while(j>ind) {
+      if(listOfElements->get(j).element < pivot) {
+	listOfElements->add(listOfElements->get(j).element, ind);
+	ind++;
+	listOfElements->remove(j+1);
+      } else j--;
+    }
+    if ((i==ind) && (j==ind)) {
+	int exit = 1;
+      } 
+  } while (!exit);
+    if (r-p >= 1) {
+      if (j>p) quickSort (p, j-1);
+      if (i<r) quickSort (i+1, r);
     }
   }
-  for (int i=positionOfX+1; i<=listOfElements.size(); i++) {
-    a=listOfElements->remove(i);
-    if (a<X) {
-      listOfElements->add(a, positionOfX+1);
-    }
-  }
-}
-
-//Metoda sortuj±ca szybko, wykorzystuj±ca rekursjê
-void QuickSort::quickSort(int start, int end) {
-  int a = chooseX(start, listOfElements.size());
-  quickSort(start, a-1 );
-  quickSort(a+1, end);
-}
+      
 
 //Metoda zwracaj±ca posortowan± listê
-List getList() {
-  return listOfElements
-    }
-			       
-  
-  
+void QuickSort::getList() {
+  listOfElements->wypisz();
+}
+
+int QuickSort::getSize() {
+ return listOfElements->size();
+}

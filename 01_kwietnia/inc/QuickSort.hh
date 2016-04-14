@@ -3,6 +3,8 @@
 
 #include "List.h"
 #include <cstdlib>
+#include <ctime>
+#include "IQuickSort.hh"
 
 class QuickSort: public IQuickSort {
 private:
@@ -10,11 +12,11 @@ private:
 
 public:
   QuickSort();
+  QuickSort(List* lista);
   ~QuickSort();
   void quickSort (int start, int end);
-  void change (int start, int end);
-  int chooseX (int start, int end);
-  List getList();
+  void getList();
+  int getSize();
 };
 
 #endif
