@@ -1,0 +1,11 @@
+#ifndef MERGESORT_HH
+#define MERGESORT_HH
+
+class MergeSort {
+private:
+  List* lista;
+public:
+  mergeSort();
+  !mergeSort();
+  mergeSort (int p, int q, int r)
+#endif
